@@ -13,38 +13,55 @@ namespace Multiplication_Minigame
     {
         static void Main(string[] args)
         {
-            //Generates two random numbers and initializes the answer
-            Random rnd = new Random();
 
-            int numberA = (rnd.Next(100));
+            bool success = true;
 
-            int numberB = (rnd.Next(100));
-
-            int answer = numberA * numberB;
-
-            int Input = 0;
-
-
-            Console.Write("Whats the Value of " + numberA + " x " + numberB + "?");
-            Console.WriteLine();
-
-            //turns the answering part into a loop IF the answer is wrong
-            do
+            while (success)
             {
-                Console.WriteLine();
-                Console.Write("Enter your answer: ");
-                string answerInput = Console.ReadLine();
-                Input = Convert.ToInt32(answerInput);
 
-                if (answer != Input)
+                //Generates two random numbers and initializes the answer
+                Random rnd = new Random();
+
+                int numberA = (rnd.Next(100));
+
+                int numberB = (rnd.Next(100));
+
+                int answer = numberA * numberB;
+
+                int Input = 0;
+
+
+                Console.Write("Whats the Value of " + numberA + " x " + numberB + "?");
+                Console.WriteLine();
+
+                //turns the answering part into a loop IF the answer is wrong
+                do
                 {
                     Console.WriteLine();
-                    Console.WriteLine("wrong.");
-                }
-            } while (answer != Input);
+                    Console.Write("Enter your answer: ");
+                    string answerInput = Console.ReadLine();
+                    if (int.TryParse(answerInput, out Input)) // prevents the program from encountering a parsing error when the input is not a number 
+                    {
+                        success = false;
+                    }    
+                    else 
+                    {
+                        if (answer != Input)
 
-            Console.WriteLine();
-            Console.WriteLine("you guessed right, Good job!");
+                        Console.WriteLine();
+                        Console.WriteLine("wrong.");
+                    }
+                } while (answer != Input);
+
+                Console.WriteLine();
+                Console.WriteLine("you guessed right, Good job!");
+                    
+                        
+
+
+
+            }
+
 
             Console.ReadLine();
         }
